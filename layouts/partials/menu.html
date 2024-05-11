@@ -2,7 +2,7 @@
 {{ $isntDefault := not (or (eq (trim $.Site.Params.contentTypeName " ") "posts") (eq (trim $.Site.Params.contentTypeName " ") "")) }}
 {{ $contentTypeName := cond $isntDefault (string $.Site.Params.contentTypeName) "posts" }}
 {{ with site.Menus.main }}
-<nav class="h-full static">
+{{/*  <nav class="h-full static">
   <button id="navbar-menu-toggle" type="button" class="inline-flex items-center p-2 text-sm text-slate-800 dark:text-slate-200 rounded-lg md:hidden" aria-controls="navbar-menu" aria-expanded="false">
     <span class="sr-only">{{ T "open_main_menu" }}</span>
     <i class="w-8 h-8">
@@ -22,5 +22,21 @@
     {{ end }}
     </ul>
   </div>
-</nav>
+</nav>  */}}
+
+
+<nav
+      class="text-grayishBlue text-darkShark3 flex flex-col items-center uppercase md:flex-row md:items-end">
+      {{ range . }}
+        {{ if not .HasChildren }}
+        <a
+          href="{{ .URL }}"
+          class="border-l-white/10 bg-no-repeat px-4 py-2 hover:bg-gradient-to-b hover:from-[#101112] hover:via-[#17191b] hover:to-[#1b1e20] hover:text-white focus:bg-gradient-to-b focus:from-[#101112] focus:via-[#17191b] focus:to-[#1b1e20] md:border-l"
+          title="{{ .Name }}"
+          >{{ .Name }}</a
+        >
+        {{ end }}
+      {{ end }}
+    </nav>
+
 {{ end }}

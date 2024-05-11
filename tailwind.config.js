@@ -8,7 +8,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        
+        darkShark: "#202429",
+        darkShark1: "#272b30",
+        darkShark3: "hsla(0,0%,100%,.5)",
+        darkOuterSpace: "#32383e",
       },
       typography: {
         quoteless: {

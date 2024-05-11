@@ -17,7 +17,7 @@
     <div class="flex flex-row">
       <section class="flex flex-col w-full md:w-2/3">
         {{ range (.Paginate $pages).Pages }}
-          <article class="flex flex-col mt-6 mx-2 md:mx-0 rounded-lg overflow-hidden shadow-md bg-white dark:bg-gray-700">
+          <article class="flex flex-col mt-6 mx-2 md:mx-0 rounded-lg overflow-hidden shadow-md bg-white dark:bg-darkOuterSpace">
             <div>
               <a href="{{ .RelPermalink }}">
                 {{ partial "block/image.html" . }}
