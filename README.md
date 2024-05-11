@@ -1,4 +1,4 @@
-# Hugo Theme Tailwind (Form from original)
+# Hugo Theme Tailwind (Fork from original)
 
 <img align="right" width="128" alt="logo" src="https://raw.githubusercontent.com/tomowang/hugo-theme-tailwind/main/static/logo.svg">
 
