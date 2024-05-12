@@ -12,7 +12,7 @@ or whatever comment engine you want -> https://gohugo.io/content-management/comm
   {{ with .Site.Params.giscus }}
 <script type="text/javascript">
   (function() {
-    const themeToggle = document.querySelector('.darkmode-toggle input');
+    const themeToggle = document.getElementById('theme-toggle');
     const light = 'light';
     const dark = 'dark';
     let isDark = localStorage.theme === dark || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
@@ -48,7 +48,7 @@ or whatever comment engine you want -> https://gohugo.io/content-management/comm
       iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
     }
 
-    themeToggle.addEventListener('change', function () {
+    themeToggle.addEventListener('click', function () {
       if (this.checked) {
         theme = dark;
       } else {

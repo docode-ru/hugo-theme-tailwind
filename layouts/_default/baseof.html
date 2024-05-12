@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ or site.Language.LanguageCode site.Language.Lang }}" dir="{{ or site.Language.LanguageDirection `ltr` }}" class="dark">
+<html lang="{{ or site.Language.LanguageCode site.Language.Lang }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
 <head>
   {{ block "title" . }}
     {{- $title := "" -}}
@@ -24,7 +24,7 @@
   {{- if hugo.IsDevelopment }}
     {{ partial "tailwind-size-indicator.html" }}
   {{ end -}}
-  <header class="flex flex-none justify-center z-10  bg-slate-50 dark:bg-darkShark {{- if $.Site.Params.header.sticky }}  sticky top-0{{ end -}}">
+  <header class="flex flex-none justify-center z-10  bg-slate-100 dark:bg-darkShark {{- if $.Site.Params.header.sticky }}  sticky top-0{{ end -}}">
     {{ partial "header.html" . }}
   </header>
   <main class="flex flex-auto justify-center">
