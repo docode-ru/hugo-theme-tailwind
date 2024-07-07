@@ -1,0 +1,94 @@
+<section class="py-10">
+<div class="flex justify-center">
+  <form
+    id="subscribeForm"
+    class="w-full max-w-md rounded-md border border-teal-500 bg-gray-100 p-4 dark:bg-zinc-700 md:px-8 md:py-8">
+    <label
+      for="email"
+      class="mb-5 text-black block text-center text-xl font-bold dark:text-white"
+      >Подписывайтесь на новости проекта:</label
+    >
+    <div class="flex flex-col space-y-3 w-full">
+      <input
+        class="focus:shadow-outline w-full appearance-none rounded border px-3 py-3 leading-tight text-gray-700 shadow focus:outline-none "
+        id="email"
+        type="email"
+        placeholder="Введите email" />
+        <div class="my-3 text-black dark:text-white">
+          <div class="loading hidden">Отправка...</div>
+          <div class="error-message"></div>
+          <div class="sent-message hidden">Вы подписались. Благодарю вас!</div>
+        </div>
+      <button
+        type="submit"
+        class="rounded bg-gradient-to-t from-teal-700 to-teal-400 px-4 py-2 font-bold text-white hover:from-teal-700 hover:to-teal-700">
+        Подписаться
+      </button>
+      <div class="text-black text-sm dark:text-white">
+        Нажимая на кнопку "Подписаться" вы соглашаетесь с <a href="https://docode.ru/politika-konfedentsialnosti/" class="underline">политикой конфиденциальности</a> и <a href="https://docode.ru/usloviia-ispolzovaniia/" class="underline">пользовательским соглашением</a>
+      </div>
+    </div>
+  </form>
+</div>
+</section>
+<script>
+  document.getElementById('subscribeForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const loadingIndicator = document.querySelector('.loading');
+      const errorMessage = document.querySelector('.error-message');
+      const sentMessage = document.querySelector('.sent-message');
+
+      loadingIndicator.style.display = 'block';
+      errorMessage.style.display = 'none';
+      sentMessage.style.display = 'none';
+  
+      const email = document.getElementById('email').value;
+
+
+      // check if all fields are filled
+      if (!email) {
+          errorMessage.textContent = 'Пожалуйста, введите email.';
+          errorMessage.style.display = 'block';
+          loadingIndicator.style.display = 'none';
+          return;
+      }
+  
+      try {
+          const response = await triggerJob(email);
+          if (response.ok) {
+              sentMessage.style.display = 'block';
+          } else {
+              errorMessage.textContent = 'Error sending message.';
+              errorMessage.style.display = 'block';
+          }
+      } catch (error) {
+          console.error('Error:', error);
+          errorMessage.textContent = 'Error sending message.';
+          errorMessage.style.display = 'block';
+      } finally {
+          loadingIndicator.style.display = 'none';
+      }
+  });
+
+  async function triggerJob(email) {
+      const body = JSON.stringify({
+          email: email,
+      });
+
+      const endpoint = `https://wm.droff.me/api/w/docode/jobs/run/p/u/docode/save_subscriber_email?token=paA5GIRlsK4SKptqFSBFAJMSCZjrby`;
+      try {
+          const response = await fetch(endpoint, {
+              method: 'POST',
+              headers: {
+                  "Content-Type": "application/json"
+              },
+              body
+          });
+          return response; // Return the fetch response to handle it in the event listener
+      } catch (error) {
+          console.error('Failed to trigger job:', error);
+          throw error; // Rethrow the error to handle it in the calling function
+      }
+  }
+
+</script>

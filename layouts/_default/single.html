@@ -37,6 +37,10 @@
         {{ .Content | safeHTML }}
       </article>
 
+      {{ partial "join_links.html" . }}
+      {{ partial "subscribe_form.html" . }}
+      
+      
       {{ partial "comments.html" . }}
 
     </div>
