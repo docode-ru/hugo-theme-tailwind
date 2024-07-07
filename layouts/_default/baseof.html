@@ -13,7 +13,7 @@
     {{- if .IsHome -}}
       {{- $title = $mainTitle -}}
     {{- else -}}
-      {{- $title = printf "%s :: %s" .Title $mainTitle -}}
+      {{- $title = printf "%s" .Title -}}
     {{- end -}}
     <title>{{- $title -}}</title>
   {{ end }}
