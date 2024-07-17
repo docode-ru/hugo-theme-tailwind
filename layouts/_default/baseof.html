@@ -21,9 +21,10 @@
   {{ block "head" . }}{{ end }}
 </head>
 <body class="flex flex-col min-h-screen w-full bg-slate-50 dark:bg-darkShark1">
-  {{- if hugo.IsDevelopment }}
+  {{/*  {{- if hugo.IsDevelopment }}
     {{ partial "tailwind-size-indicator.html" }}
-  {{ end -}}
+  {{ end -}}  */}}
+  {{ partial "subscribe.html" . }}
   <header class="flex flex-none justify-center z-10  bg-slate-100 dark:bg-darkShark {{- if $.Site.Params.header.sticky }}  sticky top-0{{ end -}}">
     {{ partial "header.html" . }}
   </header>
@@ -34,5 +35,6 @@
     {{ partial "footer.html" . }}
   </footer>
   {{ partial "extended_footer.html" . }}
+  {{ partial "subscribe_popup.html" . }}
 </body>
 </html>

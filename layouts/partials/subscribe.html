@@ -1,0 +1,36 @@
+<div id="red-sub-block" class="bg-red-500 text-white px-4 py-1 flex flex-col items-center top-0 sticky z-20">
+  <div class="flex flex-col items-center md:flex-row md:items-center md:space-x-3">
+    <span class="text-center text-sm md:text-base">Используешь Telegram? Подпишись на канал автора →</span>
+    <div class="flex flex-row items-center space-x-2">
+      <a  class="bg-amber-400 text-black px-5 py-1 flex flex-row items-center hover:scale-110 transition transform duration-300" href="https://t.me/{{ .Site.Params.author.telegram }}" target="_blank">
+        <svg height="20" width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 455 455" xml:space="preserve">
+          <path style="fill-rule:evenodd;clip-rule:evenodd" d="M0 0v455h455V0H0zm384.814 100.68-53.458 257.136c-1.259 6.071-8.378 8.822-13.401 5.172l-72.975-52.981a12.065 12.065 0 0 0-14.712.412l-40.46 32.981c-4.695 3.84-11.771 1.7-13.569-4.083l-28.094-90.351-72.583-27.089c-7.373-2.762-7.436-13.171-.084-16.003L373.36 90.959c6.315-2.442 12.83 3.09 11.454 9.721z"/>
+          <path style="fill-rule:evenodd;clip-rule:evenodd" d="m313.567 147.179-141.854 87.367c-5.437 3.355-7.996 9.921-6.242 16.068l15.337 53.891c1.091 3.818 6.631 3.428 7.162-.517l3.986-29.553a24.27 24.27 0 0 1 7.522-14.522l117.069-108.822c2.192-2.03-.432-5.477-2.98-3.912z"/>
+        </svg>
+        <span class="ml-2 text-sm md:text-base">открыть</span>
+      </a>
+      <span class="inline-block text-sm md:text-base">или</span>
+      <button id="open-sub-btn" class="bg-lime-500 text-black px-3 py-1 flex flex-row items-center">
+        <svg width="20" height="20" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1920 428.266v1189.54l-464.16-580.146-88.203 70.585 468.679 585.904H83.684l468.679-585.904-88.202-70.585L0 1617.805V428.265l959.944 832.441L1920 428.266ZM1919.932 226v52.627l-959.943 832.44L.045 278.628V226h1919.887Z" fill-rule="evenodd"/>
+        </svg>
+        <span class="ml-2 text-sm md:text-base">подпишись</span>
+      </button>
+    </div>
+    <button id="close-sub-btn" class="absolute right-0 top-1/2 -translate-y-1/2 md:right-2 text-white ml-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cross" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+{{- $subscribe := resources.Get "js/subscribe.js" | js.Build "subscribe.js" -}}
+{{- if not hugo.IsDevelopment }}
+  {{- $subscribe = $subscribe | minify | fingerprint -}}
+{{ else }}
+  {{- $subscribe = $subscribe | fingerprint -}}
+{{ end -}}
+<script src="{{ $subscribe.RelPermalink }}"></script>

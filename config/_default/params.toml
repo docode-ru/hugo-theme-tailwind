@@ -18,6 +18,7 @@ jsonLD = false
 [author]
   name = "Hugo Author"
   email = "user@example.com"
+  telegram = "docode_ru"
 
 [search]
   summaryInclude = 180 # show only part of content in search result.

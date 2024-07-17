@@ -1,0 +1,21 @@
+<div class="subscribe-popup hidden fixed left-0 top-0 z-30 h-screen w-full flex-col items-center px-6 py-1 pb-4 pt-20 bg-black/90">
+  <button id="close-popup-btn" class="absolute right-2 top-1 text-white">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cross" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+</button>
+  <div class="opacity-100">
+    {{ partial "subscribe_form.html" . }}
+  </div>
+</div>
+
+<script>
+  const closeBtn = document.getElementById('close-popup-btn');
+  const popup = document.querySelector('.subscribe-popup'); 
+
+  closeBtn.addEventListener('click', () => {
+    popup.classList.add('hidden');
+  });
+</script>
